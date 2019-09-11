@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ServerInfo
+<div class="row">
+    <div class="col-md-8">
+        <div class="jumbotron">
+            <h3><span class="label label-default">OS</span></h3>
+            <br />
+            <p>Edition: <strong>@(Model.OperatingSystem.Name) (@(Model.OperatingSystem.Version))</strong></p>
+            <p>Architecture: <strong>@(Model.OperatingSystem.Architecture)</strong></p>
+            <p>Key: <strong>@(Model.OperatingSystem.Key)</strong></p>
+            <hr />
+            <h3><span class="label label-default">HARDWARE</span></h3>
+            <br />
+            <p>CPU: <strong>@(Model.Hardware.Processor.Name)</strong></p>
+            <p>RAM: <strong>@(Model.Hardware.Ram.Max)</strong></p>
+            <p>Graphics: <strong>@(Model.Hardware.Graphics.Description)</strong></p>
+            <hr />
+            <h3><span class="label label-default">BIOS</span></h3>
+            <br />
+            <p>Name: <strong>@(Model.Bios.Name) (@(Model.Bios.Manufacturer))</strong></p>
+            <p>Version: <strong>@(Model.Bios.Version)</strong></p>
+            <p>Serial: <strong>@(Model.Bios.SerialNumber)</strong></p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="jumbotron">
+                <h3><span class="label label-default">CPU</span></h3>
+                <canvas id="cpu-usage" width="250" height="80"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jumbotron">
+                <h3><span class="label label-default">RAM</span></h3>
+                <canvas id="ram-usage" width="250" height="80"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jumbotron">
+                <h3><span class="label label-default">HARD DISK</span></h3>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <p class="carousel-description"><strong>C: (NTFS)</strong></p>
+                            <p class="carousel-description">SATA</p>
+                            <div class="progress carousel-description">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                            <p class="carousel-description">400 / 500GB</p>
+                        </div>
+                        <div class="item">
+                            <p class="carousel-description"><strong>D: (NTFS)</strong></p>
+                            <p class="carousel-description">SATA</p>
+                            <div class="progress carousel-description">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <span class="sr-only">80% Complete (danger)</span>
+                                </div>
+                            </div>
+                            <p class="carousel-description">800 / 1000GB</pclass="carousel-description">
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/livechart.js"></script>
+    <script>
+        let cpuUsage = new LiveChart("#cpu-usage", 100);
+        let ramUsage = new LiveChart("#ram-usage", 100);
+        setInterval(function () {
+            $.ajax({
+                url: '/Monitor/UpdateRam',
+                type: 'POST',
+                success: function (result) {
+                    console.log(result);
+                    ramUsage.update(result.ram.mb);
+                    cpuUsage.update(result.cpu.percentage);
+                }
+            });
+        }, 1200);
+    </script>
+}

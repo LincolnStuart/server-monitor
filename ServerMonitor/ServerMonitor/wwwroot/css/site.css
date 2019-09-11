@@ -1,0 +1,91 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+	padding-top: 15px;
+	padding-bottom: 20px;
+	background: #71B280; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #71B280, #134E5E); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+	font-size: 20px;
+	line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+	width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+	margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+	/* Hide captions */
+	.carousel-caption {
+		display: none;
+	}
+}
+
+.carousel-control.right {
+	background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+	background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+	background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0))) !important;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+}
+
+.carousel-control.left {
+	background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+	background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+	background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0))) !important;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%) !important;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+.jumbotron {
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+	padding-left: 30px !important;
+	padding-right: 30px !important;
+	margin-bottom: 15px;
+}
+
+.jumbotron p {
+	font-size: 14px;
+}
+
+.jumbotron hr {
+	margin: 25px 0;
+}
+
+.progress {
+	height: 7px !important;
+	background-color: #fff !important;
+	width: 50% !important;
+	margin-bottom: 5px !important;
+}
+
+.carousel-description {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.label{
+	font-size: 12px !important;
+}
